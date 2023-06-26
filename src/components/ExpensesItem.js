@@ -1,28 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
 import ExpenseDetails from "./ExpenseDetails";
 import Card from "./Card";
 
+function ExpenseItem(props) {
+  const [title, setTitle] = useState(props.title);
+  const [amount, setExpense] = useState(props.amount);
 
-function Expenseitem(props) {
-  const clickHandler=() => {
-    console.log('clicked!!!');
-    
-  }
+  const clickHandler = () => {
+    setTitle("Updated!");
+    console.log(title);
+  };
+
+  const changeExpense = () => {
+    setExpense("$100");
+  };
+
   return (
     <Card className="expense-item">
-      <ExpenseDate date={props.date}></ExpenseDate>
+      <ExpenseDate date={props.date} />
       <div className="expense-item__description">
         <ExpenseDetails
-          title={props.title}
-          amount={props.amount}
+          title={title}
+          amount={amount}
           place={props.place}
-        ></ExpenseDetails>
+        />
       </div>
-      <button onSubmit={clickHandler}>Change Title</button>
-      <button onSubmit>Delete Expenses</button>
+      <button onClick={clickHandler}>Change Title</button>
+      <button>Delete Expense</button>
+      <button onClick={changeExpense}>Change Expense</button>
     </Card>
+  );
+}
+
+export default ExpenseItem;
+
   );
 }
 
