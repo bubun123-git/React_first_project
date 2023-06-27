@@ -23,8 +23,20 @@ function ExpenseForm() {
     setEnteredPlace(event.target.value);
   };
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const expensedata = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: enteredDate,
+      place: enteredPlace,
+    };
+      console.log(expensedata);
+      
+  };
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
@@ -45,7 +57,7 @@ function ExpenseForm() {
             onChange={amountChangeHandler}
           />
         </div>
-        
+
         <div className="new-expense__control">
           <label>Date</label>
           <input
@@ -56,7 +68,7 @@ function ExpenseForm() {
             onChange={dateChangeHandler}
           />
         </div>
-        
+
         <div className="new-expense__control">
           <label>Place</label>
           <input
