@@ -34,23 +34,16 @@ function App() {
       place: "bbsr",
     },
   ];
-  let expenseComponents = [];
+  
+  const addExpenseHandler = (expense) => {
+    console.log("In App.js");
+    console.log(expense);
+  };
 
-  for (let i = 0; i < expenses.length; i++) {
-    expenseComponents.push(
-      <Expenseitem
-        key={i}
-        title={expenses[i].title}
-        amount={expenses[i].amount}
-        date={expenses[i].date}
-        place={expenses[i].place}
-      ></Expenseitem>
-    );
-  }
   return (
-    <div >
-      <NewExpense></NewExpense>
-      {expenseComponents}
+    <div>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
 }
