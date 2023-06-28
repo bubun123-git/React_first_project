@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./NewExpense.css";
+import NewExpense from "./NewExpense";
 
-function ExpenseForm() {
+
+function ExpenseForm(props) {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
@@ -28,11 +30,14 @@ function ExpenseForm() {
     const expensedata = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: enteredDate,
+      date: new Date(enteredDate),
       place: enteredPlace,
     };
-      console.log(expensedata);
-      
+    props.onSaveExpenseData(expensedata)
+    setEnteredTitle('')
+    setEnteredAmount('')
+    setEnteredDate('')
+    setEnteredPlace('')
   };
 
   return (
@@ -44,6 +49,7 @@ function ExpenseForm() {
             type="text"
             onChange={titleChangeHandler}
             placeholder="Enter title"
+            value={enteredTitle}
           />
         </div>
 
@@ -55,6 +61,7 @@ function ExpenseForm() {
             min="0.01"
             step="0.01"
             onChange={amountChangeHandler}
+            value={enteredAmount}
           />
         </div>
 
@@ -66,6 +73,7 @@ function ExpenseForm() {
             min="2019-01-01"
             max="2022-12-31"
             onChange={dateChangeHandler}
+            value={enteredDate}
           />
         </div>
 
@@ -75,6 +83,7 @@ function ExpenseForm() {
             type="text"
             onChange={placeChangeHandler}
             placeholder="Enter place"
+            value={enteredPlace}
           />
         </div>
       </div>
