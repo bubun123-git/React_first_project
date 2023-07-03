@@ -29,7 +29,7 @@ function NewExpense(props) {
       {isEditing && (
         <ExpenseForm
           onSaveExpenseData={saveExpenseDataHandler}
-          onCancel={startEditingHandler}
+          onCancel={stopEditingHandler}
         />
       )}
     </div>
